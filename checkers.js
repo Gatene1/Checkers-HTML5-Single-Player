@@ -7,6 +7,9 @@ let mouseX, mouseY;
 let mouseUp = true;
 let mouseDown = false;
 let boardSquareOn;
+let turn = 0; // 0 = black, 1 = red
+let turnTitle;
+let turnId;
 
 let blackScore = 0;
 let redScore = 0;
@@ -30,11 +33,20 @@ window.onload = function() {
 	
 	let framesPerSecond = 30;
 	// 30 times a second, the DrawBoard function is called
-	setInterval(CallAllFunctions, 1000/framesPerSecond)
+	setInterval(CallAllFunctions, 1000/framesPerSecond);
 	
 	gameBoard.addEventListener('mousemove', UpdateMousePos);
 	gameBoard.addEventListener('mousedown', CheckerPieceFloat);
 	gameBoard.addEventListener('mouseup', MouseUpToggle)
+}
+
+function DrawTitle() {
+	turnId = document.getElementById("turn");
+	if (turn == 0)
+		turnTitle = "-- Black's Turn --";
+	if (turn == 1)
+		turnTitle = "Red's Turn";
+	turnId.textContent = turnTitle;
 }
 
 function CallAllFunctions() {
@@ -42,6 +54,7 @@ function CallAllFunctions() {
 	DrawPiece();
 	MouseCalculations();
 	DrawMouseCursor();
+	DrawTitle();
 	// This will display the xy coordinates where the mouse pointer is at, and will display at the pointer.
 	//DrawText(mouseX, mouseY, "yellow", "24px", "sans-serif", Math.floor(mouseX) + ", " + Math.floor(mouseY)); 
 	// This will display which board square the mouse pointer is pointing, and will display at the pointer.

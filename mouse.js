@@ -5,6 +5,7 @@ function MouseUpToggle(evt) {
 	
 	pieceArray.forEach(function(piece) {
 		if (piece.mouseHas && squareArray[boardSquareOn].squareColor == '#303030' && !squareArray[boardSquareOn].hasPiece) {
+			// Needs to check if the square can be moved to, based on who's turn it is, whether they are going forward/reverse, and kinged
 			piece.begX = squareArray[boardSquareOn].begX;
 			piece.begY = squareArray[boardSquareOn].begY;
 			piece.onSquare = boardSquareOn;
